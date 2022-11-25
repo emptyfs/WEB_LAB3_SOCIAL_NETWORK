@@ -1,0 +1,85 @@
+extends layout
+
+block content
+
+    link(rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css")
+    script(src="https://code.jquery.com/jquery-1.12.4.js")
+    script(src="https://code.jquery.com/ui/1.12.1/jquery-ui.js")
+    script(src="/javascripts/ru_date.js")
+
+    script(src="/javascripts/friends.js")
+    link(rel='stylesheet', href='/stylesheets/users.css')
+    h1 Список друзей
+    if !(users.length > 0)
+        p  ------------------------------------------------------------------------------------------------------------------------------
+    if (users.length > 0)
+        -for(var i = 0; i < users.length; i++)
+            table.table_avatar(class=i+100)(class="w3-border w3-bordered w3-centered")
+                td(class=i+1)
+                    table.left_user_form
+                        tr
+                            td(hidden=false).image_x
+                                img.avatar(class=i+1)(src=`../images/${users[i].image}.jpg` alt='Avatar' style='width:140px; height:140px;')
+                td(class=i+1)
+                    table.user_form(class="w3-striped w3-bordered w3-centered w3-hoverable")
+                        tr
+                            th ФИО
+                                section
+                                    td(hidden=false).name_x= users[i].name
+                        tr
+                            th Дата рождения
+                                section
+                                    td(hidden=false).birthday_x= users[i].birthday
+                        tr
+                            th email
+                                section
+                                    td(hidden=false).email_x= users[i].email
+                        tr
+                            th роль
+                                section
+                                    td(hidden=false).role_x= users[i].role
+                        tr
+                            th статус
+                                section
+                                    td(hidden=false).status_x= users[i].status
+            button.delete_from_friends(class=i+1)(disabled=false)(data-index=users[i].image, data-self_index=self_index) Удалить из друзей
+    else
+
+    h1 Остальные пользователи
+    if !(unusers.length > 0)
+        p  ------------------------------------------------------------------------------------------------------------------------------
+    if (unusers.length > 0)
+        - for(var i = 0; i < unusers.length; i++)
+            table.table_avatar(class=i + 100)(class="w3-border w3-bordered w3-centered")
+                td(class=i + 1)
+                    table.left_user_form
+                        tr
+                            td(hidden=false).image_x
+                                img.avatar(class=i + 1)(src=`../images/${unusers[i].image}.jpg` alt='Avatar' style='width:140px; height:140px;')
+                td(class=i + 1)
+                    table.user_form(class="w3-striped w3-bordered w3-centered w3-hoverable")
+                        tr
+                            th ФИО
+                                section
+                                    td(hidden=false).name_x= unusers[i].name
+                        tr
+                            th Дата рождения
+                                section
+                                    td(hidden=false).birthday_x= unusers[i].birthday
+                        tr
+                            th email
+                                section
+                                    td(hidden=false).email_x= unusers[i].email
+                        tr
+                            th роль
+                                section
+                                    td(hidden=false).role_x= unusers[i].role
+                        tr
+                            th статус
+                                section
+                                    td(hidden=false).status_x= unusers[i].status
+            button.add_to_friends(class=i+1)(disabled=false)(data-index=unusers[i].image, data-self_index=self_index) Добавить в друзья
+
+    br
+    br
+    button(onclick='window.location = "https://localhost:3000";') Вернуться к списку пользователей

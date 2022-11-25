@@ -1,0 +1,39 @@
+extends layout
+
+block content
+
+    link(rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css")
+    script(src="https://code.jquery.com/jquery-1.12.4.js")
+    script(src="https://code.jquery.com/ui/1.12.1/jquery-ui.js")
+    script(src="/javascripts/ru_date.js")
+
+    script(src="/javascripts/news.js")
+    link(rel='stylesheet', href='/stylesheets/users.css')
+
+    h1 Список новостей друзей
+    if !(users.length > 0)
+        p  ------------------------------------------------------------------------------------------------------------------------------
+    if (users.length > 0)
+        -for (var i = 0; i < users.length; i++)
+            table.height_table.table_avatar(data-length=users.length)(class=i + 100)(class="w3-border w3-bordered w3-centered")
+                td(class=i + 1)
+                    table.left_user_form
+                        tr
+                            td.image_height(hidden=false).image_x
+                                img.avatar(class=i + 1)(src=`../images/${users[i].image}.jpg` alt='Avatar' style='width:140px; height:140px;')
+                        td.name_image_height(hidden=false).name_x= users[i].name
+                td.text_td(class=i + 1)
+                    p(class=i + 1)(data-news=users[i].news) Новости пользователя:
+
+            button.clear_news(class=i + 1)(data-index = users[i].image, data-pic = i) Очистить новости
+            br
+            br
+
+
+    br
+    br
+    button(onclick='window.location = "https://localhost:3000";') Вернуться к списку пользователей
+
+
+
+

@@ -1,0 +1,95 @@
+@border_solid_black: 1px solid black;
+@table_display: inline-table;
+@border_radius: 10px;
+
+
+h1{
+  background-color: red;
+}
+
+#user_list
+{
+  text-align: center;
+}
+
+//.avatar
+//{
+  //display: @user_display;
+//}
+
+.text_td
+{
+  width: 1000px;
+  vertical-align: text-top;
+  p
+  {
+    text-align: left;
+  }
+}
+
+.image_height
+{
+  //height: 300px;
+}
+
+.height_table
+{
+  vertical-align: text-top;
+  //height: 300px;
+}
+
+.user_form
+{
+  vertical-align: top;
+  display:@table_display;
+  table-layout: fixed;
+  width: 700px;
+
+  border: @border_solid_black;
+  border-radius: @border_radius;
+  td
+  {
+    border: @border_solid_black;
+    border-radius: @border_radius;
+  }
+}
+
+.left_user_form
+{
+  vertical-align: top;
+  display:@table_display;
+
+  table, th, td {
+    border: @border_solid_black;
+    border-collapse: collapse;
+  }
+  th, td {
+    background-color: black;
+  }
+}
+
+.news_text
+{
+  //display: inline-block;
+  width: 450px;
+  font-size: 20px;
+  float: right;
+}
+
+.message
+{
+  //border-collapse: collapse;
+  border: @border_solid_black;
+  //vertical-align: bottom;
+  input
+  {
+    text-align: center;
+  }
+}
+
+body
+{
+  background-image: url("../images/back.jpg");
+}
+
+

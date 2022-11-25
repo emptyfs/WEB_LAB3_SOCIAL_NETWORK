@@ -1,0 +1,107 @@
+extends layout
+
+block content
+
+  link(rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css")
+  script(src="https://code.jquery.com/jquery-1.12.4.js")
+  script(src="https://code.jquery.com/ui/1.12.1/jquery-ui.js")
+  script(src="/javascripts/ru_date.js")
+
+  script(src="/javascripts/users.js")
+  link(rel='stylesheet', href='/stylesheets/users.css')
+  h1#user_list Список пользователей
+  - for(var i = 0; i < users.length; i++)
+    table.table_avatar(class=i+100)(class="w3-border w3-bordered w3-centered")
+      td(class=i+1)
+        table.left_user_form
+          tr
+            td(hidden=false).image_x
+              img.avatar(class=i+1)(src=`./images/${users[i].image}.jpg` alt='Avatar' style='width:140px; height:140px;')
+            td(hidden=true)
+              input.change_avatar(class=i+1)(type="file", accept="image/jpg,image/jpeg,image/png,image/gif")
+      td(class=i+1)
+          table.user_form(class="w3-striped w3-bordered w3-centered w3-hoverable")
+            tr
+              th ФИО
+                section
+                  td(hidden=false).name_x= users[i].name
+                  td(hidden=true)
+                    input.name(class=i+1)(type="text", placeholder=users[i].name, required, value="")
+            tr
+              th Дата рождения
+                section
+                  td(hidden=false).birthday_x= users[i].birthday
+                  td(hidden=true)
+                    input.birthday(class=i+1)(type="datepicker", placeholder=users[i].birthday, required, value="")
+            tr
+              th email
+                section
+                  td(hidden=false).email_x= users[i].email
+                  td(hidden=true)
+                    input.email(class=i+1)(type="email", placeholder=users[i].email, required, value="")
+            tr
+              th роль
+                section
+                  td(hidden=false).role_x= users[i].role
+                  td(hidden=true)
+                    select.role(class=i+1)
+                      option(value="Пользователь") Пользователь
+                      option(value="Администратор") Администратор
+            tr
+              th статус
+                section
+                  td(hidden=false).status_x= users[i].status
+                  td(hidden=true)
+                    select.status(class=i+1)
+                      option(value="Не подтверждённый пользователь") Не подтверждённый пользователь
+                      option(value="Активный") Активный
+                      option(value="Заблокированный") Заблокированный
+    button.edit_btn(class=i+1)(disabled=false)(data-index=i) Редактировать данные
+    button.delete_btn(class=i+1)(data-index=i) Удалить пользователя
+    br
+    button.friends(class=i+1)(data-index=i)(onclick='window.location = "https://localhost:3000/friends/' + i +'";') Друзья
+    button.news(class=i+1)(data-index=i)(onclick='window.location = "https://localhost:3000/news/' + i +'";') Новости
+    button.messages(class=i+1)(data-index=i)(onclick='window.location = "https://localhost:3000/messages/' + i +'";') Сообщения
+    br.br(class=i+1)
+    br.br(class=i+1)
+  form#add_user_form(hidden=true)
+    table#picture(class="w3-border w3-bordered w3-centered")
+      td
+        table
+          tr
+            td
+              input#add_image(type="file", accept="image/jpg,image/jpeg,image/png,image/gif")
+      td
+        table#info(class="w3-striped w3-bordered w3-centered w3-hoverable")
+          tr
+            th ФИО
+              section
+                td
+                  input#add_name(type="text", required, value="")
+          tr
+            th Дата рождения
+              section
+                td
+                  input#add_birtday(type="datepicker", required, value="")
+          tr
+            th email
+              section
+                td
+                  input#add_email(type="email", required, value="")
+          tr
+            th роль
+              section
+                td
+                  select#add_role
+                    option(value="Пользователь") Пользователь
+                    option(value="Администратор") Администратор
+          tr
+            th статус
+              section
+                td
+                  select#add_status
+                    option(value="Не подтверждённый пользователь") Не подтверждённый пользователь
+                    option(value="Активный") Активный
+                    option(value="Заблокированный") Заблокированный
+
+  button#add_user Добавить пользователя
